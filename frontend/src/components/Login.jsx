@@ -55,7 +55,7 @@ const Login = () => {
         }
     },[])
     return (
-        <div className='flex items-center w-screen h-screen justify-center'>
+        <div className='flex items-center w-screen h-screen justify-center bg-black'>
             <form onSubmit={signupHandler} className='shadow-lg flex flex-col gap-5 p-8'>
                 <div className='my-4'>
                     <h1 className='text-center font-bold text-xl'>LOGO</h1>
