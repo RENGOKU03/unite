@@ -7,7 +7,7 @@ const MainLayout = () => {
   const [leftSideBar, setLeftSideBar] = useState(true);
   return (
     <div className="bg-black text-white">
-      <div className="flex justify-center items-center align-middle">
+      <div className="flex justify-center items-center align-middle h-16">
         <Menu
           size={40}
           className="absolute top-4 left-6 z-20 md:hidden"

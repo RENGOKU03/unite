@@ -14,6 +14,7 @@ import { setOnlineUsers } from "./redux/chatSlice";
 import { setLikeNotification } from "./redux/rtnSlice";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import SearchBox from "./components/SearchBox";
+import Explore from "./components/Explore";
 
 const browserRouter = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const browserRouter = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <ChatPage />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/explore",
+        element: (
+          <ProtectedRoutes>
+            <Explore />
           </ProtectedRoutes>
         ),
       },

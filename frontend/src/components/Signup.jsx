@@ -100,8 +100,8 @@ const Signup = () => {
   }, []);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
-      <div className="grid grid-cols-2 h-[90%] w-3/4 mx-auto shadow-lg bg-white overflow-hidden rounded-3xl">
-        <div className="rounded-3xl mx-10">
+      <div className="md:grid md:grid-cols-2 h-[95%] w-3/4 mx-auto shadow-lg bg-white overflow-hidden rounded-3xl">
+        <div className="rounded-3xl md:mx-10">
           <form onSubmit={signupHandler} className="flex flex-col gap-5 p-8">
             <div className="my-4">
               <img src="../unite.svg" alt="logo" className="m-auto" />
@@ -140,23 +140,30 @@ const Signup = () => {
               />
             </div>
             <div className="relative">
-              <span className="font-medium">Password</span>
-              <Input
-                type={passwordType}
-                name="password"
-                value={input.password}
-                onChange={changeEventHandler}
-                className="focus-visible:ring-transparent my-2 bg-blue-100"
-              />
-              <Eye
-                className="absolute top-[52px] right-4 -translate-y-1/2 text-pink-500 cursor-pointer hover:scale-110 transition-all duration-300"
-                onClick={() =>
-                  setPasswordType(
-                    passwordType === "password" ? "text" : "password"
-                  )
-                }
-                size={20}
-              />
+              <span className="font-medium flex items-center gap-4">
+                Password{" "}
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </span>{" "}
+              <div className="flex items-center">
+                <Input
+                  type={passwordType}
+                  name="password"
+                  value={input.password}
+                  onChange={changeEventHandler}
+                  className="focus-visible:ring-transparent my-2 bg-blue-100"
+                />
+                <Eye
+                  className="absolute right-4 text-pink-500 cursor-pointer hover:scale-110 transition-all duration-300"
+                  onClick={() =>
+                    setPasswordType(
+                      passwordType === "password" ? "text" : "password"
+                    )
+                  }
+                  size={20}
+                />
+              </div>
             </div>
             {loading ? (
               <Button>

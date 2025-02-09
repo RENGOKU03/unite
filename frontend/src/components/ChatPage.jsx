@@ -45,17 +45,18 @@ const ChatPage = () => {
   }, []);
 
   return (
-    <div className="flex gap-4h-screen md:ml-[20%] bg-black text-white">
+    <div className="flex gap-4 h-[calc(100vh-4rem)] md:ml-[20%] bg-black text-white">
       <section className="w-full md:w-1/4 my-8">
         <h1 className="font-bold mb-4 px-3 text-xl">{user?.username}</h1>
         <hr className="mb-4 border-gray-300" />
-        <div className="overflow-y-auto h-[80vh]">
+        <div className="overflow-y-auto ">
           {suggestedUsers.map((suggestedUser) => {
             const isOnline = onlineUsers.includes(suggestedUser?._id);
             return (
               <div
                 onClick={() => dispatch(setSelectedUser(suggestedUser))}
-                className="flex gap-3 items-center p-3 hover:bg-gray-50 cursor-pointer"
+                className="flex gap-3 items-center p-3 hover:bg-gray-900 rounded-xl
+                 cursor-pointer"
                 key={suggestedUser?._id}
               >
                 <Avatar className="w-14 h-14">

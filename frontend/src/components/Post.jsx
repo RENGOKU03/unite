@@ -30,7 +30,6 @@ const Post = ({ post }) => {
   const [comment, setComment] = useState(post.comments);
   const dispatch = useDispatch();
   const followUnfollowHandler = useFollowUnfollow();
-  console.log(userProfile, posts);
 
   const changeEventHandler = (e) => {
     const inputText = e.target.value;
@@ -136,7 +135,7 @@ const Post = ({ post }) => {
     }
   };
   return (
-    <div className="my-8 w-full max-w-[650px] mx-auto">
+    <div className="my-8 w-full  max-w-[650px] mx-auto">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Avatar>

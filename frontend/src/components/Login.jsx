@@ -61,8 +61,8 @@ const Login = () => {
   }, []);
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
-      <div className="grid grid-cols-2 h-3/4 w-3/4 mx-auto shadow-lg bg-white overflow-hidden rounded-3xl">
-        <div className="rounded-3xl mx-10">
+      <div className="md:grid md:grid-cols-2 h-[95%] w-3/4 mx-auto shadow-lg bg-white overflow-hidden rounded-3xl">
+        <div className="rounded-3xl md:mx-10">
           <form onSubmit={signupHandler} className="flex flex-col gap-5 p-8">
             <div className="my-4">
               <img src="../unite.svg" alt="logo" className="m-auto" />

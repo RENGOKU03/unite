@@ -1,6 +1,5 @@
 import {
   Heart,
-  Home,
   HomeIcon,
   LogOut,
   MessageCircle,
@@ -8,11 +7,11 @@ import {
   Search,
   TrendingUp,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { toast } from "sonner";
 import axios from "axios";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser } from "@/redux/authSlice";
 import CreatePost from "./CreatePost";
@@ -59,6 +58,8 @@ const LeftSidebar = () => {
       navigate("/chat");
     } else if (textType === "Search") {
       navigate("/search");
+    } else if ((textType = "Explore")) {
+      navigate("/explore");
     }
   };
 

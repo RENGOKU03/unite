@@ -5,6 +5,7 @@ const postSlice = createSlice({
     posts: [],
     selectedPost: null,
     leftSideBar: false,
+    homePosts: [],
   },
   reducers: {
     //actions
@@ -17,8 +18,11 @@ const postSlice = createSlice({
     toggleLeftSideBar: (state) => {
       state.leftSideBar = !state.leftSideBar;
     },
+    setHomePosts: (state, action) => {
+      state.homePosts = action.payload;
+    },
   },
 });
-export const { setPosts, setSelectedPost, toggleLeftSideBar } =
+export const { setPosts, setSelectedPost, toggleLeftSideBar, setHomePosts } =
   postSlice.actions;
 export default postSlice.reducer;

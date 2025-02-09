@@ -21,7 +21,6 @@ const useFollowUnfollow = () => {
           );
           if (res.data.success) {
             dispatch(setUserProfile(res.data.user));
-            console.log("profile dispatched");
           }
         } catch (error) {
           console.log(error);

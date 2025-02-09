@@ -54,7 +54,7 @@ const Profile = () => {
     activeTab === "posts" ? userProfile?.posts : userProfile?.bookmarks;
 
   return (
-    <div className="flex justify-center mx-auto ml-[20%] min-h-screen">
+    <div className="flex justify-center mx-auto ml-[20%] min-h-[calc(100vh-4rem)]">
       <div className="flex flex-col gap-20 p-8 mt-4 w-screen">
         <div className="md:flex gap-10">
           <section className="flex items-center justify-center overflow-hidden md:w-1/3">
