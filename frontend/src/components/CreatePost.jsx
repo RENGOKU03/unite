@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { readFileAsDataURL } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { Loader2, X, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,7 +51,7 @@ const CreatePost = ({ open, setOpen }) => {
         }
       );
       if (res.data.success) {
-        dispatch(setPosts([res.data.post, ...posts])); // [1] -> [1,2] -> total element = 2
+        dispatch(setPosts([res.data.post, ...posts]));
         toast.success(res.data.message);
         setOpen(false);
       }
@@ -59,67 +59,124 @@ const CreatePost = ({ open, setOpen }) => {
       toast.error(error.response.data.message);
     } finally {
       setLoading(false);
+      setCaption("");
+      setImagePreview("");
+      setFile("");
     }
+  };
+
+  const removeImagePreview = () => {
+    setImagePreview("");
+    setFile("");
   };
 
   return (
     <Dialog open={open}>
-      <DialogContent onInteractOutside={() => setOpen(false)}>
-        <DialogHeader className="text-center font-semibold">
-          Create New Post
+      <DialogContent
+        onInteractOutside={() => setOpen(false)}
+        className="bg-gray-900 text-gray-100 border-gray-800 sm:max-w-md max-w-[90vw]"
+      >
+        <DialogHeader className="text-center font-semibold border-b border-gray-800 pb-3">
+          <div className="flex justify-between items-center">
+            <div className="w-8" />
+            <h3 className="text-lg">Create New Post</h3>
+            <button
+              onClick={() => setOpen(false)}
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors"
+            >
+              <X size={18} />
+            </button>
+          </div>
         </DialogHeader>
+
         <div className="flex gap-3 items-center">
-          <Avatar>
-            <AvatarImage src={user?.profilePicture} alt="img" />
-            <AvatarFallback>CN</AvatarFallback>
+          <Avatar className="border border-gray-700">
+            <AvatarImage src={user?.profilePicture} alt="profile" />
+            <AvatarFallback className="bg-gray-800 text-gray-300">
+              {user?.username?.charAt(0)?.toUpperCase() || "U"}
+            </AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="font-semibold text-xs">{user?.username}</h1>
-            <span className="text-gray-600 text-xs">Bio here...</span>
+            <h1 className="font-semibold text-sm text-gray-100">
+              {user?.username || "Username"}
+            </h1>
+            <span className="text-gray-400 text-xs">
+              {user?.bio || "Bio here..."}
+            </span>
           </div>
         </div>
+
         <Textarea
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
-          className="focus-visible:ring-transparent border-none"
+          className="focus-visible:ring-transparent bg-gray-800 border-gray-700 min-h-24 placeholder:text-gray-500 text-gray-100"
           placeholder="Write a caption..."
         />
-        {imagePreview && (
-          <div className="w-full h-64 flex items-center justify-center">
+
+        {imagePreview ? (
+          <div className="relative w-full h-64 group">
             <img
               src={imagePreview}
-              alt="preview_img"
-              className="object-cover h-full w-full rounded-md"
+              alt="preview"
+              className="object-cover h-full w-full rounded-md bg-gray-800"
             />
+            <button
+              onClick={removeImagePreview}
+              className="absolute top-2 right-2 bg-gray-900 bg-opacity-80 p-1.5 rounded-full text-white opacity-80 hover:opacity-100 transition-opacity"
+            >
+              <X size={16} />
+            </button>
+          </div>
+        ) : (
+          <div
+            className="w-full h-40 border-2 border-dashed border-gray-700 rounded-md flex items-center justify-center flex-col gap-2 cursor-pointer hover:border-gray-600 transition-colors"
+            onClick={() => imageRef.current.click()}
+          >
+            <ImageIcon size={32} className="text-gray-500" />
+            <p className="text-gray-400 text-sm font-medium">
+              Upload Photo or Video
+            </p>
           </div>
         )}
+
         <input
           ref={imageRef}
           type="file"
           className="hidden"
+          accept="image/*,video/*"
           onChange={fileChangeHandler}
         />
-        <Button
-          onClick={() => imageRef.current.click()}
-          className="w-fit mx-auto bg-[#0095F6] hover:bg-[#258bcf] "
-        >
-          Select from computer
-        </Button>
-        {imagePreview &&
-          (loading ? (
-            <Button>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Please wait
-            </Button>
-          ) : (
+
+        <div className="flex gap-3 w-full">
+          {!imagePreview && (
             <Button
-              onClick={createPostHandler}
-              type="submit"
-              className="w-full"
+              onClick={() => imageRef.current.click()}
+              className="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700"
+              variant="outline"
             >
-              Post
+              Select Media
             </Button>
-          ))}
+          )}
+
+          <Button
+            onClick={createPostHandler}
+            disabled={loading || (!caption && !imagePreview)}
+            className={`flex-1 ${
+              !imagePreview
+                ? "bg-blue-600 hover:bg-blue-500"
+                : "bg-blue-600 hover:bg-blue-500 w-full"
+            }`}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Posting...
+              </>
+            ) : (
+              "Post"
+            )}
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -37,7 +37,7 @@ const Explore = () => {
     if (post.video) {
       return (
         <div className="absolute inset-0 flex items-center justify-center">
-          <Play className="w-12 h-12 text-white opacity-80" />
+          <Play className="w-10 h-10 md:w-12 md:h-12 text-white opacity-80" />
         </div>
       );
     }
@@ -46,27 +46,27 @@ const Explore = () => {
 
   const renderHoverContent = (post) => {
     return (
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center space-x-6 ">
-        <div className="flex items-center space-x-2">
-          <span className="text-white font-semibold">
+      <div className="absolute inset-0 bg-black/60 flex items-center justify-center space-x-4 md:space-x-6 backdrop-blur-sm transition-all duration-200">
+        <div className="flex items-center space-x-1 md:space-x-2">
+          <span className="text-white text-sm md:text-base font-semibold">
             {post.likes?.length || 0}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
+            className="h-5 w-5 md:h-6 md:w-6 text-white"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
-        <div className="flex items-center space-x-2">
-          <span className="text-white font-semibold">
+        <div className="flex items-center space-x-1 md:space-x-2">
+          <span className="text-white text-sm md:text-base font-semibold">
             {post.comments?.length || 0}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
+            className="h-5 w-5 md:h-6 md:w-6 text-white"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -75,13 +75,16 @@ const Explore = () => {
         </div>
         {post.video && (
           <button
-            onClick={() => setMuted(!muted)}
-            className="p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75"
+            onClick={(e) => {
+              e.stopPropagation();
+              setMuted(!muted);
+            }}
+            className="p-1.5 md:p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 transition-colors"
           >
             {muted ? (
-              <VolumeX className="h-6 w-6 text-white" />
+              <VolumeX className="h-5 w-5 md:h-6 md:w-6 text-white" />
             ) : (
-              <Volume2 className="h-6 w-6 text-white" />
+              <Volume2 className="h-5 w-5 md:h-6 md:w-6 text-white" />
             )}
           </button>
         )}
@@ -91,40 +94,67 @@ const Explore = () => {
 
   if (loading) {
     return (
-      <div className="ml-[20%] h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="ml-0 md:ml-[20%] h-screen flex items-center justify-center bg-zinc-900">
+        <div className="w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="ml-[20%] h-screen flex items-center justify-center text-red-500">
-        {error}
+      <div className="ml-0 md:ml-[20%] h-screen flex items-center justify-center bg-zinc-900">
+        <div className="bg-zinc-800 p-4 rounded-lg border border-zinc-700 max-w-xs md:max-w-md mx-4">
+          <p className="text-red-400 font-medium text-center">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 w-full py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded text-sm font-medium transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="ml-[20%] mx-auto px-4 py-8 min-h-[calc(100vh-4rem)] overflow-y-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 md:gap-4">
+    <div className="ml-0 md:ml-[20%] px-2 sm:px-4 py-6 md:py-8 min-h-screen overflow-y-auto bg-zinc-900 text-zinc-100">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 lg:gap-3">
         {posts.map((post) => (
           <div
             key={post._id}
-            className="relative aspect-square group cursor-pointer"
+            className="relative aspect-square group cursor-pointer overflow-hidden"
             onMouseEnter={() => setHoveredPost(post._id)}
             onMouseLeave={() => setHoveredPost(null)}
+            onClick={() => console.log(`Clicked post: ${post._id}`)}
           >
             <img
               src={post.image}
               alt={`Post by ${post.author?.username || "Unknown"}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
             />
             {renderMediaOverlay(post)}
             {hoveredPost === post._id && renderHoverContent(post)}
+            <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="text-white text-xs sm:text-sm truncate">
+                {post.author?.username || "Unknown"}
+              </p>
+            </div>
           </div>
         ))}
       </div>
+
+      {posts.length === 0 && !loading && !error && (
+        <div className="flex flex-col items-center justify-center h-64 text-zinc-400">
+          <p className="text-center mb-4">No posts to display</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-md text-sm transition-colors"
+          >
+            Refresh
+          </button>
+        </div>
+      )}
     </div>
   );
 };

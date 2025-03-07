@@ -1,10 +1,12 @@
 import { setUserProfile } from "@/redux/authSlice";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import useGetHomePosts from "./useGetHomePosts";
 
 const useFollowUnfollow = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
+  const getHomePost = useGetHomePosts();
 
   const handleFollowToggle = async (userid) => {
     try {
@@ -21,6 +23,7 @@ const useFollowUnfollow = () => {
           );
           if (res.data.success) {
             dispatch(setUserProfile(res.data.user));
+            getHomePost();
           }
         } catch (error) {
           console.log(error);

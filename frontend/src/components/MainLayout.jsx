@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import LeftSidebar from "./LeftSidebar";
-import { Menu } from "lucide-react";
+import useGetAllPost from "@/hooks/useGetAllPost";
+import useGetSuggestedUsers from "@/hooks/useGetSuggestedUsers";
+import useGetHomePosts from "@/hooks/useGetHomePosts";
+import useGetUserProfile from "@/hooks/useGetUserProfile";
 
 const MainLayout = () => {
-  const [leftSideBar, setLeftSideBar] = useState(true);
   return (
-    <div className="bg-black text-white">
+    <div className="bg-zinc-900 text-white">
       <div className="flex justify-center items-center align-middle h-16">
-        <Menu
-          size={40}
-          className="absolute top-4 left-6 z-20 md:hidden"
-          onClick={() => setLeftSideBar(!leftSideBar)}
-        />
         <img src="../unite.svg" alt="logo" className=" mx-auto mt-4" />
       </div>
-      {leftSideBar && <LeftSidebar />}
+      <LeftSidebar />
       <div>
         <Outlet />
       </div>
