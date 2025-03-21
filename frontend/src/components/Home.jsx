@@ -13,7 +13,9 @@ const Home = () => {
   useGetAllPost();
   useGetSuggestedUsers();
   useGetHomePosts();
-  useGetUserProfile(user._id);
+  {
+    user && useGetUserProfile(user._id);
+  }
   return (
     <div className="flex bg-zinc-900 text-white">
       <div className="flex-grow">
