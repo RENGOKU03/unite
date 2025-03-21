@@ -62,7 +62,7 @@ const CommentDialog = ({ open, setOpen }) => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `http://localhost:8000/api/v1/post/${selectedPost?._id}/comment`,
+        `https://unite-dd7d.onrender.com/api/v1/post/${selectedPost?._id}/comment`,
         { text },
         {
           headers: {
@@ -98,7 +98,7 @@ const CommentDialog = ({ open, setOpen }) => {
       setIsLoading(true);
       const action = liked ? "dislike" : "like";
       const res = await axios.get(
-        `http://localhost:8000/api/v1/post/${selectedPost._id}/${action}`,
+        `https://unite-dd7d.onrender.com/api/v1/post/${selectedPost._id}/${action}`,
         { withCredentials: true }
       );
 
@@ -143,7 +143,7 @@ const CommentDialog = ({ open, setOpen }) => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `http://localhost:8000/api/v1/post/${selectedPost?._id}/bookmark`,
+        `https://unite-dd7d.onrender.com/api/v1/post/${selectedPost?._id}/bookmark`,
         { withCredentials: true }
       );
       if (res.data.success) {

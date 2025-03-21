@@ -16,9 +16,12 @@ const useGetAllUsers = () => {
         setIsLoading(true);
         setError(null);
 
-        const res = await axios.get("http://localhost:8000/api/v1/user/all", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://unite-dd7d.onrender.com/api/v1/user/all",
+          {
+            withCredentials: true,
+          }
+        );
 
         if (isMounted && res.data.success) {
           dispatch(setAllUsers(res.data.users));

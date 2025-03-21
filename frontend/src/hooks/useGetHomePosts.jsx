@@ -9,9 +9,12 @@ const useGetHomePosts = () => {
 
   const fetchHomePosts = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/v1/post/all", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://unite-dd7d.onrender.com/api/v1/post/all",
+        {
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
         const posts = res.data.posts;

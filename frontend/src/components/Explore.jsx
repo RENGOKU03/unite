@@ -12,9 +12,12 @@ const Explore = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/api/v1/post/all", {
-          credentials: "include",
-        });
+        const response = await fetch(
+          "https://unite-dd7d.onrender.com/api/v1/post/all",
+          {
+            credentials: "include",
+          }
+        );
         const data = await response.json();
 
         if (data.success) {
