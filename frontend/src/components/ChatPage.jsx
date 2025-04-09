@@ -65,7 +65,7 @@ const ChatPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col ml-64 md:flex-row h-[calc(100vh-4rem)] bg-gray-950 text-gray-200">
+    <div className="flex flex-col ml-16 md:ml-64 md:flex-row h-[calc(100vh-4rem)] bg-gray-950 text-gray-200">
       {/* Mobile toggle button */}
       <div className="md:hidden flex items-center justify-between p-3 bg-gray-900">
         <div className="flex items-center">

@@ -26,7 +26,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-gradient-to-b from-zinc-900 to-black text-white font-sans">
+    <div className="h-screen w-screen bg-gradient-to-b from-zinc-900 to-black text-white font-sans ">
       {/* Fixed Header */}
       <div className="flex items-center justify-center px-6 py-4 border-b border-zinc-800/50 backdrop-blur-sm bg-zinc-900/80 sticky top-0 z-10">
         <div className="flex items-center gap-4">
@@ -42,11 +42,11 @@ const SearchBox = () => {
         {" "}
         {/* Adjusted height to account for header */}
         {/* Sidebar */}
-        <div className="hidden md:block">
+        <div className=" md:block">
           <LeftSidebar />
         </div>
         {/* Main Content */}
-        <div className="w-full max-w-md mx-auto px-4 pt-6 overflow-hidden">
+        <div className="w-full max-w-md mx-auto px-4 pt-6 overflow-hidden ml-16">
           {/* Search Input */}
           <div className="relative mb-6 group">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

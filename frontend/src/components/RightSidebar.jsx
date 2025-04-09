@@ -12,7 +12,7 @@ const RightSidebar = () => {
   }
 
   return (
-    <div className="w-72 my-6 pr-4 hidden md:block md:mr-6 sticky top-20">
+    <div className="w-72 my-6 pr-4 md:block md:mr-6 sticky top-20">
       {/* User Profile Card */}
       <div className="bg-gray-900 rounded-lg shadow-md border border-gray-800 p-4 mb-6">
         <div className="flex items-center gap-3">

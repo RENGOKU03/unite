@@ -120,7 +120,7 @@ const Explore = () => {
   }
 
   return (
-    <div className="ml-0 md:ml-[20%] px-2 sm:px-4 py-6 md:py-8 min-h-screen overflow-y-auto bg-zinc-900 text-zinc-100">
+    <div className="ml-16 md:ml-[20%] px-2 sm:px-4 py-6 md:py-8 min-h-screen overflow-y-auto bg-zinc-900 text-zinc-100">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 lg:gap-3">
         {posts.map((post) => (
           <div

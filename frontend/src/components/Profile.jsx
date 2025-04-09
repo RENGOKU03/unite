@@ -82,13 +82,13 @@ const Profile = () => {
     activeTab === "posts" ? uProfile?.posts : uProfile?.bookmarks;
 
   return (
-    <div className="flex justify-center  min-h-screen bg-gray-900 text-gray-100 ml-10">
+    <div className="flex justify-center  min-h-screen bg-gray-900 text-gray-100 md:ml-10 ml-16 z-10">
       <div className="flex flex-col gap-8 p-4 md:p-8 w-full max-w-6xl">
         {/* Profile Header */}
         <div className="flex flex-col md:flex-row gap-8 p-6 rounded-xl bg-gray-800 shadow-lg">
           {/* Avatar */}
-          <section className="flex items-center justify-center overflow-hidden">
-            <Avatar className="h-32 w-32 md:h-48 md:w-48 border-2 border-indigo-400 shadow-md">
+          <section className="flex items-center justify-center overflow-hidden z-10">
+          <Avatar className="h-32 w-32 md:h-48 md:w-48 border-2 border-indigo-400 shadow-md z-10">
               <AvatarImage src={uProfile?.profilePicture} alt="profilephoto" />
               <AvatarFallback className="bg-gray-700 text-indigo-300">
                 {uProfile?.username?.substring(0, 2).toUpperCase() || "CN"}

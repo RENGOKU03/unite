@@ -12,7 +12,9 @@ const MainLayout = () => {
       <div className="flex justify-center items-center align-middle h-16">
         <img src="../unite.svg" alt="logo" className=" mx-auto mt-4" />
       </div>
-      <LeftSidebar />
+      <div className="fixed">
+        <LeftSidebar />
+      </div>
       <div>
         <Outlet />
       </div>

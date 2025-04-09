@@ -196,7 +196,7 @@ const CommentDialog = ({ open, setOpen }) => {
     <Dialog open={open}>
       <DialogContent
         onInteractOutside={() => setOpen(false)}
-        className="max-w-5xl p-0 flex flex-col overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black h-[85vh] max-h-[85vh]"
+        className="max-w-5xl p-0 flex flex-col overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black h-[95vh] max-h-[95vh]"
       >
         {/* Close button */}
         <button
@@ -206,8 +206,8 @@ const CommentDialog = ({ open, setOpen }) => {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="flex flex-1 h-full">
-          <div className="w-3/5 bg-black flex items-center justify-center relative">
+        <div className="flex flex-col md:flex-row w-full h-full">
+          <div className="md:w-3/5 w-full bg-black flex items-center justify-center relative">
             {/* Left/Right navigation arrows could be added here */}
             <img
               src={selectedPost?.image}
@@ -216,7 +216,7 @@ const CommentDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          <div className="w-2/5 flex flex-col h-full bg-gradient-to-b from-gray-900 to-black text-white border-l border-gray-800">
+          <div className="md:w-2/5 w-full flex flex-col md:h-full bg-gradient-to-b from-gray-900 to-black text-white border-l border-gray-800">
             {/* Header - Fixed height */}
             <div className="flex items-center justify-between p-4 border-b border-gray-800/50">
               <div className="flex gap-3 items-center">
@@ -310,7 +310,7 @@ const CommentDialog = ({ open, setOpen }) => {
                 <>
                   {/* Caption - This should have a static height */}
                   {selectedPost?.caption && (
-                    <div className="p-4 border-b border-gray-800/40">
+                     <div className="p-4 border-b border-gray-800/40 ">
                       <div className="flex gap-3 items-start">
                         <Avatar className="h-8 w-8 ring-2 ring-offset-1 ring-offset-gray-900 ring-gray-700">
                           <AvatarImage
