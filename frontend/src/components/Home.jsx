@@ -17,7 +17,7 @@ const Home = () => {
     user && useGetUserProfile(user._id);
   }
   return (
-    <div className="flex flex-col-reverse bg-zinc-900 text-white ml-16 md:ml-0 ">
+    <div className="flex flex-col-reverse md:flex-col bg-zinc-900 text-white ml-16 md:ml-0 ">
       <div className="flex-grow">
         <Feed />
         <Outlet />

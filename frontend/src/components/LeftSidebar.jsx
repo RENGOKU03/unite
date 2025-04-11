@@ -170,7 +170,7 @@ const LeftSidebar = () => {
 
   return (
     <div
-    className={`sticky top-0 z-50 left-0 h-screen bg-zinc-900 border-r border-zinc-800/50 transition-all duration-300 overflow-hidden ${
+    className={` top-0 z-50 left-0 h-screen bg-zinc-900 border-r border-zinc-800/50 transition-all duration-300 overflow-hidden ${
       collapsed ? "w-16" : "w-64"
     } overflow-hidden`}
     >
