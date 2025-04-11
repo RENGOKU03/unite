@@ -170,7 +170,7 @@ const LeftSidebar = () => {
 
   return (
     <div
-    className={` top-0 z-50 left-0 h-screen bg-zinc-900 border-r border-zinc-800/50 transition-all duration-300 overflow-hidden ${
+    className={`fixed top-0 z-50 left-0 h-[calc(100vh-200px)] md:h-screen bg-zinc-900 border-r border-zinc-800/50 transition-all duration-300  ${
       collapsed ? "w-16" : "w-64"
     } overflow-hidden`}
     >
